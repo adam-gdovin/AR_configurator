@@ -6,6 +6,7 @@
       "DOM",
       "ES2017"
     ],
+    "outDir": "./build",
     "outFile": "./build/main.build.js",
     "rootDir": "./src",               
     "strict": true, 
@@ -18,5 +19,12 @@
     "inlineSources": true,   
     "experimentalDecorators": true,
     "forceConsistentCasingInFileNames": true
+  },
+  "watchOptions": {
+    "watchFile": "useFsEvents",
+    "watchDirectory": "useFsEvents",
+    "fallbackPolling": "dynamicPriority",
+    "synchronousWatchDirectory": true,
+    "excludeFiles": ["*.js", "*.ts"]
   }
 }

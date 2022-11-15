@@ -19,23 +19,26 @@
   ],
   "main": "build/main.bundle.js",
   "scripts": {
-    "build:debug": "tsc --project tsconfig.debug.json",
+    "build:debug": "tsc --project tsconfig.json",
     "build:release": "tsc --project tsconfig.release.json",
-    "watch:debug": "tsc --watch --project tsconfig.debug.json",
+    "watch:debug": "tsc --watch --project tsconfig.json",
     "watch:release": "tsc --watch --project tsconfig.release.json",
+    "watch:asset": "onchange \"build/**\" -e \"build/main.bundle.js\" -- npm run push:asset",
     "push": "node node_modules/playcanvas-sync/pcsync.js pushAll --yes",
+    "push:asset":  "node node_modules/playcanvas-sync/pcsync.js pushAll --yes -e jpg,jpeg,png,tif,fbx,obj",
     "build-push:debug": "npm run build:debug && npm run push",
     "build-push:release": "npm run build:release && npm run push",
-    "watch-push:debug": "npm run build:debug && tsc-watch -p tsconfig.debug.json --onSuccess \"npm run push\"",
+    "watch-push:debug": "npm run build:debug && tsc-watch -p tsconfig.json --onSuccess \"npm run push\"",
     "watch-push:release": "npm run build:release && tsc-watch -p tsconfig.release.json --onSuccess \"npm run push\""
   },
   "license": "MIT",
   "devDependencies": {
     "playcanvas": "^1.55.4",
-    "playcanvas-sync": "git+https://github.com/playcanvas/playcanvas-sync.git",
+    "playcanvas-sync": "git+https://github.com/playcanvas/playcanvas-sync.git#a03b041091bf885b75a2852b7b05e190974c14ce",
     "typescript": "^4.7.4"
   },
   "dependencies": {
+    "onchange": "^7.1.0",
     "tsc-watch": "^5.0.3"
   }
 }
